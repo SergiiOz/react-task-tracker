@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import Header from './components/Header';
 import Tasks from './components/Tasks';
+import AddTask from './components/AddTask';
 
 function App() {
+  const [isShowAddTask, setIsShowAddTask] = useState(false);
   const [tasks, setTasks] = useState([
     {
       id: 111,
@@ -14,7 +16,7 @@ function App() {
       id: 222,
       text: 'Academic hours',
       day: 'Feb 27th at 1:20am',
-      reminder: true,
+      reminder: false,
     },
     {
       id: 333,
@@ -25,8 +27,10 @@ function App() {
   ]);
 
   //ADD TASK
-  const addTask = () => {
-    console.log('add task');
+  const addTask = (task) => {
+    const id = Math.floor(Math.random() * 10000) + 1;
+    const newTask = { id, ...task };
+    setTasks([...tasks, newTask]);
   };
 
   //DELETE TASK
@@ -43,9 +47,19 @@ function App() {
     );
   };
 
+  //toggle ShowAddTask
+  const toggleShowAddTask = () => {
+    setIsShowAddTask(!isShowAddTask);
+  };
+
   return (
     <div className="container">
-      <Header title="Header" onClick={addTask} />
+      <Header
+        title="Header"
+        toggleShowAddTask={toggleShowAddTask}
+        isShowAddTask={isShowAddTask}
+      />
+      {isShowAddTask && <AddTask onAdd={addTask} />}
       {tasks.length > 0 ? (
         <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder} />
       ) : (

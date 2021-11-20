@@ -1,9 +1,13 @@
+import PropTypes from 'prop-types';
 //import icons from library
 import { FaTimes } from 'react-icons/fa';
 
 const Task = ({ task, onDelete, onToggle }) => {
   return (
-    <div className="task" onDoubleClick={() => onToggle(task.id)}>
+    <div
+      className={`task ${task.reminder === true ? 'reminder' : ''}`}
+      onDoubleClick={() => onToggle(task.id)}
+    >
       <h3>
         {task.text}{' '}
         <FaTimes
@@ -16,6 +20,12 @@ const Task = ({ task, onDelete, onToggle }) => {
       <p>{`${task.reminder}`}</p>
     </div>
   );
+};
+
+Task.propTypes = {
+  task: PropTypes.object,
+  onDelete: PropTypes.func,
+  onToggle: PropTypes.func,
 };
 
 export default Task;
