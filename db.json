@@ -7,16 +7,16 @@
       "id": 1
     },
     {
-      "text": "Second Task",
-      "day": "Write",
-      "reminder": false,
-      "id": 2
-    },
-    {
       "text": "Third Task",
       "day": "Speak",
-      "reminder": true,
+      "reminder": false,
       "id": 3
+    },
+    {
+      "text": "third Task",
+      "day": "My new Test Task",
+      "reminder": true,
+      "id": 4
     }
   ]
 }
